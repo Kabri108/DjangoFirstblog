@@ -1,0 +1,42 @@
+{%extends 'basic.html'%}
+
+{%block title%}Search reasult{%endblock title%}
+{%block body%}
+<div class="container">
+<h2>Your Search reasults:</h2>
+{% if allPost|length < 1  %}
+<div class="container">
+    
+     <p>   NO search reasults   </p>
+        your search query:<b>-{{query}}-</b> did not match any documents<br/>
+        suggestions:
+        <ul>
+        <li>Make sure that all words are spell correct.</li>
+        <li>Try different keywards.</li>
+        <li>Try more general keywards.</li>
+        <li>Try fewer keywards.</li>
+        </ul>
+    
+</div>    
+
+{% endif %}
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 ">
+    {% for post in allPost %}
+        <div class="col">
+            <div class="card h-100 " style="width: 18rem;">
+                <img src="{{post.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.content| truncatechars:100}}</p>
+                    <a href="/blog/{{post.slug}}" class="btn btn-primary rounded-0 float-end">Read more..</a>
+                </div>
+            </div> 
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{%endblock body%}
+
+

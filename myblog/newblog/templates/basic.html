@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{%block title%}Home{%endblock%}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="" alt="">
+          <span>King coder</span>
+        </a>
+        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/blog">Blog</a>
+            <a class="nav-link" href="/contact">Contact</a>
+          </div>
+          <form methode="get" action="/search" class="d-flex mx-3" role="search">
+            <input class="form-control me-2" name="query" id="query" type="search" placeholder="Search"
+              aria-label="Search">
+            <button class="btn btn-outline-success me-2" type="submit">Search</button>
+          </form>
+          
+          <!-- Button to trigger sign up modal -->
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login
+          </button>
+          <!-- Button to trigger sign up modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">SignUp
+          </button>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+  {% for message in massages %}
+  <div class="alert alert-primary {{massage.tags}}" role="alert">
+    <strong>Message:</strong>{{message}}
+  </div>
+
+  {% endfor %}
+  {% comment %} login modal {% endcomment %}
+
+ <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalTitle">Login Here</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form >
+            <div class="mb-3">
+              <label for="loginusername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername" aria-describedby="User name">
+            </div>
+            <div class="mb-3">
+              <label for="pas" class="form-label">Enter your Password</label>
+              <input type="password" class="form-control" id="pas" name="pas" placeholder="Enter your password ">
+            </div>
+           {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% comment %} login modal end {% endcomment %}
+  <!--Sign up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalTitle">SignUp Here</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/signup" method="post">
+          {% csrf_token %}
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" aria-describedby="User name">
+            </div>
+            <div class="mb-3">
+              <label for="fname" class="form-label">First name</label>
+              <input type="text" class="form-control" id="fname" name="fname" aria-describedby="First name"
+                placeholder="chose a unic username" placeholder="your First name">
+            </div>
+            <div class="mb-3">
+              <label for="lname" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lname" name="lname" aria-describedby="Last name"
+                placeholder="your Last name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                placeholder="name@example.com">
+              <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="pas1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="pas1" name="pas1" placeholder="Chose your password again">
+            </div>
+            <div class="mb-3">
+              <label for="pas2" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="pas2" name="pas2" placeholder="Enter your password again">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%block body%}
+
+
+  {%endblock%}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

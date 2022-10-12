@@ -1,0 +1,65 @@
+{%extends 'basic.html'%}
+
+{%block title%}blogpost{%endblock title%}
+{%block body%}
+
+
+<div class="container-fluid d-flex ">
+
+    <!-- <div class="blog-post">
+        <h2 class="blog-post-title">{{post.title}}</h2>
+        <p class="blog-post-meta">{{post.timeStamp}} by <a href="/about">{{post.auther}}</a></p>
+        <p>{{post.content}}</p>
+    </div> -->
+    <!-- <div class="col-md-3 m-3">
+        <ul>
+            {% for p in allpost %}
+            <li><a href="">{{p.title}}</a></li>
+          {% endfor %}
+        </ul>
+    </div> -->
+
+
+    <!-- -------------- -->
+    <!-- container s -->
+    <div class="container-fluid">
+
+        <!-- row s -->
+        <div class="row g-4 m-5">
+
+            <!-- main post content s -->
+            <div class="col-md-8 col-lg-9 vstak gap-4">
+                <div class="blog-post">
+                    <h2 class="blog-post-title">{{post.title}}</h2>
+                    <p class="blog-post-meta">{{post.timeStamp}} by <a href="/about">{{post.auther}}</a></p>
+                    <p>{{post.content}}</p>
+                </div>
+            </div>
+            <!-- main post content e -->
+
+            <!--right all post title section s  -->
+            <div class="col-lg-3">
+                <div class="card" ">
+                    <div class="card-header">
+                        Featured
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <!--right all post title section e  -->
+        </div>
+        <!-- row e -->
+    </div>
+    <!-- container e -->
+
+
+</div>
+
+
+
+{%endblock body%}
